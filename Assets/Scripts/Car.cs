@@ -30,7 +30,7 @@ public class Car : MonoBehaviour
      */
     private void RespondToAccelInput()
     {
-        if (Input.GetKey(KeyCode.Space)) // can accelerate while turning
+        if (Input.GetKey(KeyCode.W)) // can accelerate while turning
         {
             ApplyAcceleration();
         }
