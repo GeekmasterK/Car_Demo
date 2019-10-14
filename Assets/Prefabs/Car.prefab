@@ -546,6 +546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 50
   accelTime: 5
+  decelTime: 5
+  brakeTime: 1
 --- !u!1 &9120429422906055968
 GameObject:
   m_ObjectHideFlags: 0
