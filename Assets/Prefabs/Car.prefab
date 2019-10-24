@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 1546628394}
   m_Layer: 0
   m_Name: Car
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -548,6 +548,7 @@ MonoBehaviour:
   accelTime: 5
   decelTime: 5
   brakeTime: 1
+  turnAnglePerSec: 90
 --- !u!1 &9120429422906055968
 GameObject:
   m_ObjectHideFlags: 0
