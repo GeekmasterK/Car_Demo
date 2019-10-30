@@ -14,12 +14,14 @@ public class Car : MonoBehaviour
     // attributes calculated at runtime
     float accelRatePerSec; // rate of acceleration per second
     float decelRatePerSec; // rate of deceleration per second
-    float brakeRatePerSec; // rate of deceleration per second when braking 
+    // float brakeRatePerSec; // rate of deceleration per second when braking 
 
     // current car state
     float forwardVelocity; // velocity of the car on the z-axis
     float currentRotation; // current car rotation
-    bool accelChange;
+    bool accelForward;
+    bool accelReverse;
+    //bool decel;
 
     Rigidbody rigidBody;
 
@@ -29,7 +31,7 @@ public class Car : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         accelRatePerSec = maxSpeed / accelTime;
         decelRatePerSec = -maxSpeed / decelTime;
-        brakeRatePerSec = -maxSpeed / brakeTime;
+        //brakeRatePerSec = -maxSpeed / brakeTime;
         forwardVelocity = 0f;
     }
 
@@ -47,14 +49,24 @@ public class Car : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W)) // can accelerate while turning
         {
+            accelForward = true;
+            accelReverse = false;
             Accelerate(accelRatePerSec);
         }
-        else if (Input.GetKey(KeyCode.Z))
+        else if(Input.GetKey(KeyCode.S))
+        {
+            accelForward = false;
+            accelReverse = true;
+            Accelerate(accelRatePerSec);
+        }
+        /*else if (Input.GetKey(KeyCode.Z))
         {
             Accelerate(brakeRatePerSec);
-        }
+        }*/
         else
         {
+            accelForward = false;
+            accelReverse = false;
             Accelerate(decelRatePerSec);
         }
     }
@@ -75,8 +87,14 @@ public class Car : MonoBehaviour
     {
         forwardVelocity += accel * Time.deltaTime; // increase forward velocity by accelRatePerSec once per frame
         forwardVelocity = Mathf.Clamp(forwardVelocity, 0f, maxSpeed); // prevent forward velocity from exceeding maximum speed
-        rigidBody.velocity = transform.forward * forwardVelocity; // accelerate forward
-        accelChange = true;
+        if(accelForward)
+        {
+            rigidBody.velocity = transform.forward * forwardVelocity; // accelerate forward
+        }
+        else if(accelReverse)
+        {
+            rigidBody.velocity = -transform.forward * forwardVelocity; // accelerate backward
+        }
     }
 
     void Turn(float direction)
@@ -90,13 +108,14 @@ public class Car : MonoBehaviour
         }
         
         // if no acceleration input, decelerate
-        if(!accelChange)
+        if(!accelForward && !accelReverse)
         {
             Accelerate(decelRatePerSec);
         }
 
         // reset for next frame
-        accelChange = false;
+        accelForward = false;
+        accelReverse = false;
         currentRotation = 0f;
     }
 }
