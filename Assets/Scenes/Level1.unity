@@ -1460,5 +1460,9 @@ PrefabInstance:
       propertyPath: accelTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1546628394, guid: 3b00ff25589efa44092801d251eba162, type: 3}
+      propertyPath: reverseDelay
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b00ff25589efa44092801d251eba162, type: 3}

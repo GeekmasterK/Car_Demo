@@ -47,13 +47,13 @@ public class Car : MonoBehaviour
      */
     void RespondToAccelInput()
     {
-        if (Input.GetKey(KeyCode.W)) // can accelerate while turning
+        if (Input.GetAxisRaw("Vertical") > 0f) // can accelerate while turning
         {
             accelForward = true;
             accelReverse = false;
             Accelerate(accelRatePerSec);
         }
-        else if(Input.GetKey(KeyCode.S))
+        else if(Input.GetAxisRaw("Vertical") < 0f)
         {
             accelForward = false;
             accelReverse = true;
@@ -73,11 +73,11 @@ public class Car : MonoBehaviour
 
     void RespondToTurnInput()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetAxisRaw("Horizontal") < 0f)
         {
             Turn(leftTurn);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetAxisRaw("Horizontal") > 0f)
         {
             Turn(rightTurn);
         }
