@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
@@ -6,8 +7,9 @@ public class Car : MonoBehaviour
     [SerializeField] float maxSpeed = 6f; // maximum speed
     [SerializeField] float accelTime = 2.5f; // time to reach 0 to max speed
     [SerializeField] float decelTime = 6f; // time to reach max speed to 0
-    [SerializeField] float brakeTime = 1f; // time to reach max speed to 0 when braking
+    //[SerializeField] float brakeTime = 1f; // time to reach max speed to 0 when braking
     [SerializeField] float turnAnglePerSec = 90f; // steering angle adjustment per second
+    [SerializeField] float levelLoadDelay = 2f;
     float leftTurn = -1f; // modifier to calculate left turn
     float rightTurn = 1f; // modifier to calculate right turn
 
@@ -25,6 +27,9 @@ public class Car : MonoBehaviour
 
     Rigidbody rigidBody;
 
+    bool isTransitioning = false;
+    bool collisionsDisabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +43,56 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RespondToAccelInput();
-        RespondToTurnInput();
+        if(!isTransitioning)
+        {
+            RespondToAccelInput();
+            RespondToTurnInput();
+        }
+
+        if(Debug.isDebugBuild)
+        {
+            RespondToDebugKeys();
+        }
+    }
+
+    void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadFirstLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionsDisabled = !collisionsDisabled;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(isTransitioning || collisionsDisabled)
+        {
+            return;
+        }
+        switch(collision.gameObject.tag)
+        {
+            case "Ground":
+                // do nothing
+                break;
+            default:
+                StartDeathSequence();
+                break;
+        }
+    }
+
+    void StartDeathSequence()
+    {
+        isTransitioning = true;
+        Invoke("LoadFirstLevel", levelLoadDelay);
+    }
+
+    void LoadFirstLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     /*
