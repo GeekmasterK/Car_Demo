@@ -7,38 +7,39 @@ public class Car : MonoBehaviour
     [SerializeField] float maxSpeed = 6f; // maximum speed
     [SerializeField] float accelTime = 2.5f; // time to reach 0 to max speed
     [SerializeField] float decelTime = 6f; // time to reach max speed to 0
-    //[SerializeField] float brakeTime = 1f; // time to reach max speed to 0 when braking
     [SerializeField] float turnAnglePerSec = 90f; // steering angle adjustment per second
-    [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] float levelLoadDelay = 2f; // delay time before level load on death and success
 
-    [SerializeField] ParticleSystem exhaustParticles;
-    [SerializeField] ParticleSystem explosionParticles;
-    [SerializeField] ParticleSystem successParticles;
+    // particle systems
+    [SerializeField] ParticleSystem exhaustParticles; // particle system for car exhaust
+    [SerializeField] ParticleSystem explosionParticles; // particle system for death explosion
+    [SerializeField] ParticleSystem successParticles; // particle system for level completion
 
-    [SerializeField] AudioClip engine;
-    [SerializeField] AudioClip death;
-    [SerializeField] AudioClip success;
+    // audio clips
+    [SerializeField] AudioClip engine; // audio clip for engine acceleration
+    [SerializeField] AudioClip death; // audio clip for death explosion
+    [SerializeField] AudioClip success; // audio clip for level completion
 
-    float leftTurn = -1f; // modifier to calculate left turn
-    float rightTurn = 1f; // modifier to calculate right turn
+    // modifiers
+    float leftTurn = -1f; // directional modifier to calculate left turn
+    float rightTurn = 1f; // directional modifier to calculate right turn
 
     // attributes calculated at runtime
     float accelRatePerSec; // rate of acceleration per second
     float decelRatePerSec; // rate of deceleration per second
-    // float brakeRatePerSec; // rate of deceleration per second when braking 
 
     // current car state
     float forwardVelocity; // velocity of the car on the z-axis
     float currentRotation; // current car rotation
-    bool accelForward;
-    bool accelReverse;
-    //bool decel;
+    bool accelForward; // is the car accelerating forward?
+    bool accelReverse; // is the car accelerating in reverse?
 
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    bool isTransitioning = false;
-    bool collisionsDisabled = false;
+    // current world state
+    bool isTransitioning = false; // is a level transition happening?
+    bool collisionsDisabled = false; // are collisions disabled?
 
     // Start is called before the first frame update
     void Start()
@@ -47,111 +48,132 @@ public class Car : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         accelRatePerSec = maxSpeed / accelTime;
         decelRatePerSec = -maxSpeed / decelTime;
-        //brakeRatePerSec = -maxSpeed / brakeTime;
         forwardVelocity = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if a level transition is not happening...
         if(!isTransitioning)
         {
-            RespondToAccelInput();
-            RespondToTurnInput();
+            RespondToAccelInput(); // enable forward/reverse accelreation input
+            RespondToTurnInput(); // enable left/right turn input
         }
-
+        // if this is a dev build...
         if(Debug.isDebugBuild)
         {
-            RespondToDebugKeys();
+            RespondToDebugKeys(); // enable debug keys
         }
     }
 
+    /*
+     * get debug key input for testing a dev build
+     */
     void RespondToDebugKeys()
     {
+        // if the L key is pressed...
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadFirstLevel();
+            LoadFirstLevel(); // reset the game to the beginning
         }
+        // otherwise, if the C key is pressed...
         else if (Input.GetKeyDown(KeyCode.C))
         {
-            collisionsDisabled = !collisionsDisabled;
+            collisionsDisabled = !collisionsDisabled; // disable collisions
         }
     }
 
+    /*
+     * determine car behavior on collision with another object
+     */
     void OnCollisionEnter(Collision collision)
     {
+        // if a level transition is happening and/or collisions are disabled...
         if(isTransitioning || collisionsDisabled)
         {
-            return;
+            return; // exit this function
         }
+        // car behavior based on the tag of the object collided with
         switch(collision.gameObject.tag)
         {
             case "Ground":
                 // do nothing
                 break;
             case "Goal":
-                StartSuccessSequence();
+                StartSuccessSequence(); // trigger win condition
                 break;
             default:
-                StartDeathSequence();
+                StartDeathSequence(); // trigger death condition
                 break;
         }
-    }
-
-    void StartDeathSequence()
-    {
-        isTransitioning = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(death);
-        explosionParticles.Play();
-        rigidBody.freezeRotation = false;
-        Invoke("LoadFirstLevel", levelLoadDelay);
-    }
-
-    void StartSuccessSequence()
-    {
-        isTransitioning = true;
-        audioSource.Stop();
-        audioSource.PlayOneShot(success);
-        successParticles.Play();
-        Invoke("LoadFirstLevel", levelLoadDelay);
-    }
-
-    void LoadFirstLevel()
-    {
-        SceneManager.LoadScene(0);
     }
 
     /*
-     * accelerate when pressing the spacebar (applying the gas)
+     * notify the player on reaching the win condition
+     */
+    void StartSuccessSequence()
+    {
+        isTransitioning = true; // a level transition is happening
+        audioSource.Stop(); // stop playing audio
+        audioSource.PlayOneShot(success); // play the success sound effect
+        successParticles.Play(); // trigger the success particle effect
+        Invoke("LoadFirstLevel", levelLoadDelay); // reset the level
+    }
+
+    /*
+     * explode car on player death
+     */
+    void StartDeathSequence()
+    {
+        isTransitioning = true; // a level transition is happening
+        audioSource.Stop(); // stop playing audio
+        audioSource.PlayOneShot(death); // play the death sound effect
+        explosionParticles.Play(); // trigger the explosion particle effect
+        rigidBody.freezeRotation = false; // unfreeze rotation physics
+        Invoke("LoadFirstLevel", levelLoadDelay); // reset the level
+    }
+
+    /*
+     * reset the game
+     */
+    void LoadFirstLevel()
+    {
+        SceneManager.LoadScene(0); // load the first scene in the build
+    }
+
+    /*
+     * accelerate forward or backward
      */
     void RespondToAccelInput()
     {
-        if (Input.GetAxisRaw("Vertical") > 0f) // can accelerate while turning
+        // if pressing the forward input...
+        if (Input.GetAxisRaw("Vertical") > 0f)
         {
-            accelForward = true;
-            accelReverse = false;
-            Accelerate(accelRatePerSec);
+            accelForward = true; // accelerating forward
+            accelReverse = false; // not accelerating in reverse
+            Accelerate(accelRatePerSec); // accelerate at the designated rate per second
         }
+        // otherwise, if pressing the backward input...
         else if(Input.GetAxisRaw("Vertical") < 0f)
         {
-            accelForward = false;
-            accelReverse = true;
-            Accelerate(accelRatePerSec);
+            accelForward = false; // not accelerating forward
+            accelReverse = true; // accelerating in reverse
+            Accelerate(accelRatePerSec); // accelerate at the designated rate per second
         }
-        /*else if (Input.GetKey(KeyCode.Z))
-        {
-            Accelerate(brakeRatePerSec);
-        }*/
+        // otherwise...
         else
         {
-            accelForward = false;
-            accelReverse = false;
-            Accelerate(decelRatePerSec);
-            StopAccelerating();
+            accelForward = false; // not accelerating forward
+            accelReverse = false; // not accelerating backward
+            Accelerate(decelRatePerSec); // decelerate at the designated rate per second
+            StopAccelerating(); // stop the acceleration audio and exhaust particles
         }
     }
 
+    /*
+     * 
+     */
     void RespondToTurnInput()
     {
         if (Input.GetAxisRaw("Horizontal") < 0f)
