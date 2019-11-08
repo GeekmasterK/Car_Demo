@@ -10,6 +10,11 @@ public class Car : MonoBehaviour
     //[SerializeField] float brakeTime = 1f; // time to reach max speed to 0 when braking
     [SerializeField] float turnAnglePerSec = 90f; // steering angle adjustment per second
     [SerializeField] float levelLoadDelay = 2f;
+
+    [SerializeField] AudioClip engine;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip success;
+
     float leftTurn = -1f; // modifier to calculate left turn
     float rightTurn = 1f; // modifier to calculate right turn
 
@@ -26,6 +31,7 @@ public class Car : MonoBehaviour
     //bool decel;
 
     Rigidbody rigidBody;
+    AudioSource audioSource;
 
     bool isTransitioning = false;
     bool collisionsDisabled = false;
@@ -34,6 +40,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         accelRatePerSec = maxSpeed / accelTime;
         decelRatePerSec = -maxSpeed / decelTime;
         //brakeRatePerSec = -maxSpeed / brakeTime;
@@ -78,6 +85,9 @@ public class Car : MonoBehaviour
             case "Ground":
                 // do nothing
                 break;
+            case "Goal":
+                StartSuccessSequence();
+                break;
             default:
                 StartDeathSequence();
                 break;
@@ -87,6 +97,17 @@ public class Car : MonoBehaviour
     void StartDeathSequence()
     {
         isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+        rigidBody.freezeRotation = false;
+        Invoke("LoadFirstLevel", levelLoadDelay);
+    }
+
+    void StartSuccessSequence()
+    {
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(success);
         Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
@@ -143,10 +164,18 @@ public class Car : MonoBehaviour
         if(accelForward)
         {
             rigidBody.velocity = transform.forward * forwardVelocity; // accelerate forward
+            if(!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(engine);
+            }
         }
         else if(accelReverse)
         {
             rigidBody.velocity = -transform.forward * forwardVelocity; // accelerate backward
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(engine);
+            }
         }
     }
 
