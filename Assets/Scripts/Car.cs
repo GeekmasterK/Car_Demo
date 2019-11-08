@@ -11,6 +11,10 @@ public class Car : MonoBehaviour
     [SerializeField] float turnAnglePerSec = 90f; // steering angle adjustment per second
     [SerializeField] float levelLoadDelay = 2f;
 
+    [SerializeField] ParticleSystem exhaustParticles;
+    [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] ParticleSystem successParticles;
+
     [SerializeField] AudioClip engine;
     [SerializeField] AudioClip death;
     [SerializeField] AudioClip success;
@@ -99,6 +103,7 @@ public class Car : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(death);
+        explosionParticles.Play();
         rigidBody.freezeRotation = false;
         Invoke("LoadFirstLevel", levelLoadDelay);
     }
@@ -108,6 +113,7 @@ public class Car : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
+        successParticles.Play();
         Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
@@ -142,6 +148,7 @@ public class Car : MonoBehaviour
             accelForward = false;
             accelReverse = false;
             Accelerate(decelRatePerSec);
+            StopAccelerating();
         }
     }
 
@@ -177,8 +184,15 @@ public class Car : MonoBehaviour
                 audioSource.PlayOneShot(engine);
             }
         }
+        exhaustParticles.Play();
     }
 
+    void StopAccelerating()
+    {
+        audioSource.Stop();
+        exhaustParticles.Stop();
+    }
+    
     void Turn(float direction)
     {
         currentRotation = turnAnglePerSec * Time.deltaTime * direction;
