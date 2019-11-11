@@ -143,7 +143,7 @@ public class Car : MonoBehaviour
     }
 
     /*
-     * accelerate forward or backward
+     * accelerate forward or backward based on player input
      */
     void RespondToAccelInput()
     {
@@ -172,66 +172,84 @@ public class Car : MonoBehaviour
     }
 
     /*
-     * 
+     * accelerate forward or backward
+     * float accel is the rate of acceleration per second
+     */
+    void Accelerate(float accel)
+    {
+        forwardVelocity += accel * Time.deltaTime; // increase forward velocity by accel once per frame
+        forwardVelocity = Mathf.Clamp(forwardVelocity, 0f, maxSpeed); // prevent forward velocity from exceeding maximum speed
+
+        // if accelerating forward...
+        if (accelForward)
+        {
+            rigidBody.velocity = transform.forward * forwardVelocity; // accelerate forward
+            // if there is no audio playing...
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(engine); // play the engine acceleration sound clip
+            }
+        }
+        // otherwise, if accelerating in reverse...
+        else if (accelReverse)
+        {
+            rigidBody.velocity = -transform.forward * forwardVelocity; // accelerate in reverse
+            // if there is no audio playing...
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(engine); // play the engine acceleration sound clip
+            }
+        }
+        exhaustParticles.Play(); // emit exhaust particles while accelerating
+    }
+
+    /*
+     * stop acceleration audio and particle effects
+     */
+    void StopAccelerating()
+    {
+        audioSource.Stop(); // stop playing engine audio
+        exhaustParticles.Stop(); // stop emitting exhaust particles
+    }
+
+    /*
+     * turn left or right based on player input
      */
     void RespondToTurnInput()
     {
+        // if pressing the left input...
         if (Input.GetAxisRaw("Horizontal") < 0f)
         {
-            Turn(leftTurn);
+            Turn(leftTurn); // turn left
         }
+        // if pressing the right input...
         if (Input.GetAxisRaw("Horizontal") > 0f)
         {
-            Turn(rightTurn);
+            Turn(rightTurn); // turn right
         }
     }
 
-    void Accelerate(float accel)
-    {
-        forwardVelocity += accel * Time.deltaTime; // increase forward velocity by accelRatePerSec once per frame
-        forwardVelocity = Mathf.Clamp(forwardVelocity, 0f, maxSpeed); // prevent forward velocity from exceeding maximum speed
-        if(accelForward)
-        {
-            rigidBody.velocity = transform.forward * forwardVelocity; // accelerate forward
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(engine);
-            }
-        }
-        else if(accelReverse)
-        {
-            rigidBody.velocity = -transform.forward * forwardVelocity; // accelerate backward
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(engine);
-            }
-        }
-        exhaustParticles.Play();
-    }
-
-    void StopAccelerating()
-    {
-        audioSource.Stop();
-        exhaustParticles.Stop();
-    }
-    
+    /*
+     * turn left or right
+     * float direction is a modifier of -1 for a left turn, or 1 for a right turn
+     */
     void Turn(float direction)
     {
-        currentRotation = turnAnglePerSec * Time.deltaTime * direction;
+        currentRotation = turnAnglePerSec * Time.deltaTime * direction; // keep track of the current car rotation
         
-        // if moving forward, turn car
+        // if moving forward...
         if (forwardVelocity > 0)
         {
-            rigidBody.rotation = Quaternion.Euler(rigidBody.rotation.eulerAngles + new Vector3(0f, currentRotation, 0f));
+            rigidBody.rotation = Quaternion.Euler(rigidBody.rotation.eulerAngles + new Vector3(0f, currentRotation, 0f)); // turn left or right
         }
         
-        // if no acceleration input, decelerate
+        // if no acceleration input...
         if(!accelForward && !accelReverse)
         {
-            Accelerate(decelRatePerSec);
+            Accelerate(decelRatePerSec); // decelerate
         }
 
-        // reset for next frame
+        // reset attributes for next frame
         accelForward = false;
         accelReverse = false;
         currentRotation = 0f;
