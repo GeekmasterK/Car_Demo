@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -127,11 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (10)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -192,6 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 69.47379
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (10)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!4 &106789237 stripped
@@ -207,11 +208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 21.488697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
@@ -394,11 +395,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,6 +455,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1343.9448
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!1001 &501412849
@@ -468,11 +469,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,6 +539,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 21.488697
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!4 &619883143 stripped
@@ -576,8 +577,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -649,11 +651,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (9)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -723,6 +720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 35.310226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
@@ -844,11 +846,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -919,6 +916,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 35.310226
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!4 &1083322784 stripped
@@ -946,11 +948,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1021,6 +1018,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 35.310226
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (7)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!1 &1680358807 stripped
@@ -1076,11 +1078,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1151,6 +1148,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 21.488697
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!1001 &1913097159
@@ -1160,11 +1162,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1235,6 +1232,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 21.488697
       objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
 --- !u!1 &1951627126 stripped
@@ -1276,11 +1278,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1350,6 +1347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 35.310226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
@@ -1429,11 +1431,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 135140822}
     m_Modifications:
-    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 5060447170666877849, guid: 989489ee2031d2a4fb326a9c2b3a292e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1493,6 +1490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1343.9448
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060447170666877853, guid: 989489ee2031d2a4fb326a9c2b3a292e,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989489ee2031d2a4fb326a9c2b3a292e, type: 3}
@@ -1572,6 +1574,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9120429421180531248, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Name
+      value: Wheel_back_right
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429421425861010, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Name
+      value: Wheel_back_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429421543840546, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Name
+      value: Wheel_front_right
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429421861080521, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Name
+      value: Wheel_front_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9120429422062587450, guid: 3b00ff25589efa44092801d251eba162,
         type: 3}
       propertyPath: m_Name
@@ -1632,41 +1679,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9120429421180531248, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Name
-      value: Wheel_back_right
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429421425861010, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Name
-      value: Wheel_back_left
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429421543840546, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Name
-      value: Wheel_front_right
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429421861080521, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Name
-      value: Wheel_front_left
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120429422062587448, guid: 3b00ff25589efa44092801d251eba162,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9120429421180531255, guid: 3b00ff25589efa44092801d251eba162, type: 3}
     - {fileID: 9120429421543840545, guid: 3b00ff25589efa44092801d251eba162, type: 3}
@@ -1708,21 +1720,21 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
-    damper: 2000
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+    spring: 90000
+    damper: 9000
+    targetPosition: 1
+  m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
-  m_Mass: 1
-  m_WheelDampingRate: 0.25
+  m_Mass: 100
+  m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 2
-    m_ExtremumValue: 5
-    m_AsymptoteSlip: 5
-    m_AsymptoteValue: 2
+    m_ExtremumSlip: 0.4
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
@@ -1738,21 +1750,21 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
-    damper: 2000
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+    spring: 90000
+    damper: 9000
+    targetPosition: 1
+  m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
-  m_Mass: 1
-  m_WheelDampingRate: 0.25
+  m_Mass: 100
+  m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 2
-    m_ExtremumValue: 5
-    m_AsymptoteSlip: 5
-    m_AsymptoteValue: 2
+    m_ExtremumSlip: 0.4
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
@@ -1768,21 +1780,21 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
-    damper: 2000
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+    spring: 90000
+    damper: 9000
+    targetPosition: 1
+  m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
-  m_Mass: 1
-  m_WheelDampingRate: 0.25
+  m_Mass: 100
+  m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 2
-    m_ExtremumValue: 5
-    m_AsymptoteSlip: 5
-    m_AsymptoteValue: 2
+    m_ExtremumSlip: 0.4
+    m_ExtremumValue: 1
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
@@ -1798,25 +1810,25 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 5
   m_SuspensionSpring:
-    spring: 4000
-    damper: 2000
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+    spring: 90000
+    damper: 9000
+    targetPosition: 1
+  m_SuspensionDistance: 0.08
   m_ForceAppPointDistance: 0
-  m_Mass: 1
-  m_WheelDampingRate: 0.25
+  m_Mass: 100
+  m_WheelDampingRate: 1
   m_ForwardFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_AsymptoteSlip: 0.8
+    m_AsymptoteValue: 0.5
+    m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 1
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 1
-    m_Stiffness: 5
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
+    m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &9120429422667653916 stripped
 GameObject:
